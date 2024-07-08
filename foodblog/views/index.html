@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <aside id="leftside"></aside>
+    <aside id="rightside"></aside>
+    <div id="container" class="container mx-auto">
+    <header><headcomp></headcomp></header>
+
+    <main>
+    
+    <!--<section class="d-flex flex-column flex-md-row">-->
+    <aside id="photos" class="mt-5 ml-3">
+        <img v-bind:src="mainimage" alt="White Chicken Chili" width="180">
+    </aside>
+    
+    <h2><blogtitle></blogtitle></h2>
+    <!--</section>--> 
+    
+    
+    
+    <section id="blogposts" class="w-auto p-0 m-0">
+
+    <ul>
+        <li id="posts" v-for="post in posts">
+            <span class="profile">
+                <img v-bind:src="post.profilepic" v-on:click="authorinfo(posts, post)">
+            </span>
+            <span class="author">{{ post.name }}</span> — 
+            <span class="date">{{ post.date }}</span>
+            <span class="reply">{{ post.reply }}</span>
+            <p>
+            {{ post.message }}
+            </p>
+        </li>
+        <div id="info_box" class="w-auto m-0" v-for="post in posts" v-if="post.thisBox">
+            <p class="closeBtn closeBtnP" v-on:click="$emit('close', post.thisBox = false)">&#10006;</p>
+            <div id="info_title">{{ post.name }}</div>
+            <div id="info_foodie"><span>Foodie Level: </span>{{ post.foodielevel }}</div>
+            <div id="info_bio"><span>Bio:<br></span>{{ post.bio }}</div>
+            <button class="closeBtn closeBtnB" v-on:click="$emit('close', post.thisBox = false)">Close</button>
+            <p id="close_info"></p>
+        </div>
+    </ul>
+
+    
+
+    </section>
+
+    </main>
+
+    <footer>
+        &copy; Copyright FOOD BLOG
+    </footer>
+    
+</div>  
+    <script src="js/vue.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
